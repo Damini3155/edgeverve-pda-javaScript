@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dom1</title>
+    </head>
+    <body onclick="myFunction()">
+        <p>hello</p>
+        <p></p>
+        <p class="c1"></p>
+        <p id="id1"></p>
+        <p id="id2"></p>
+        <script>
+            const tag = document.getElementsByTagName("p");
+            tag[1].innerHTML="World";
+
+            const classtag = document.getElementsByClassName("c1")
+            classtag[0].innerHTML="inner Html ans class tag and class tags used"
+
+            const idtag = document.getElementById("id1")
+            idtag.innerHTML="hope you are trying "
+
+            function myFunction(){
+                const idtag=document.getElementById("id2");
+                const elemt = document.activeElement.tagName.idtag.innerHTML=elemt;
+            }
+        </script>
+    </body>
+</html>
