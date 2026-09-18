@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dom2</title>
+    </head>
+    <body>
+        <p>hello</p>
+        <p id = "id1"></p>
+        <p id = "id2"></p>
+        <script>
+            document.addEventListener("click",function(){
+                document.getElementById("id1").innerHTML="Hi Guys"
+            });
+            document.body.style.backgroundColor="purple"
+            const head = document.createElement("h1");
+            document.body.appendChild(head);
+
+            const node= document.createTextNode("this is text")
+            head.appendChild(node);
+
+            const selector = document.querySelector("#id2")
+            selector.innerHTML="Are you working naa!!!!";
+        </script>
+    </body>
+</html>
