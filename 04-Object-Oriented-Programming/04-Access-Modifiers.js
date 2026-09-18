@@ -1,5 +1,5 @@
 //access modifiers-public,private,protected,default
-
+//encapsulation - private 
 class student{
     #marks=100;//Private field
     showmark(){
