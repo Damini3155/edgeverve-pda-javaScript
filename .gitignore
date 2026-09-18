@@ -1,0 +1,38 @@
+# ===========================
+# Node.js
+# ===========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+
+# ===========================
+# Environment Variables
+# ===========================
+.env
+.env.test
+.env.production
+
+# ===========================
+# IDE Files
+# ===========================
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+
+# ===========================
+# Archives
+# ===========================
+*.zip
+*.tar.gz
+_archive/
+
+# ===========================
+# OS Specific
+# ===========================
+.DS_Store
+Thumbs.db
+desktop.ini
