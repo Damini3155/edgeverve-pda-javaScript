@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM51</title>
+</head>
+
+<body>
+
+    <h1 id="h1"></h1>
+
+    <script>
+
+        const name = localStorage.getItem("name");
+        const sid = localStorage.getItem("sid");
+
+        console.log(name);
+        console.log(sid);
+
+        if (name && sid) {
+
+            const h1 = document.getElementById("h1");
+
+            h1.innerHTML = "Hello " + name + ", your ID is " + sid;
+
+        } else {
+
+            alert("Please enter the data");
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
