@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM3</title>
+</head>
+
+<body>
+
+    <h1>Student Details</h1>
+
+    <form id="id1" method="post">
+
+        <label>
+            Name:
+            <input type="text" id="name" name="name">
+        </label>
+
+        <br>
+
+        <label>
+            StudentID:
+            <input type="text" id="sid" name="sid">
+        </label>
+
+        <br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <h2 ></h2>
+
+    <script>
+
+        document.getElementById("id1").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const sid = document.getElementById("sid").value;
+
+            const h2 = document.getElementsByTagName("h2");
+
+            h2[0].textContent = "Hello " + name + ", your SID is " + sid;
+
+        });
+
+    </script>
+
+</body>
+</html>
