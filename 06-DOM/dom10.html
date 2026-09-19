@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <script>
+            const helloEvent = new Event("sayHello");
+            document.addEventListener("sayHello",function(event){
+                const head = document.createElement("h1");
+                document.body.appendChild(head);
+                const textnode = document.createTextNode("Hello this custom Event");
+                head.appendChild(textnode);
+            });
+            document.dispatchEvent(helloEvent);
+
+        </script>
+    </body>
+</html>
