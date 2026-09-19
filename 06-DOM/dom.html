@@ -11,9 +11,9 @@
  * - Notification API: Displays native pop-up notifications on the user's screen.
  * - Server API (REST, SOAP, GraphQL): Handles backend business logic and database operations[cite: 1, 2].
  * - Third-Party API (OpenWeather, Google Maps, Twitter): External services integrated into applications[cite: 2].
- */
 
- //DOM DOCUMENT OBJET MODEL-WEBPAGES-DOCUMANT OBJECT
+
+ DOM DOCUMENT OBJET MODEL-WEBPAGES-DOCUMANT OBJECT
  <!doctype html>
  <html>
     <head></head>
@@ -22,6 +22,7 @@
         <h1></h1>
     </body>
  </html>
+  */
  //Documnet is represented using tree is call DOM tree
  // DOM (Document Object Model) is used to access, modify, add, or remove HTML elements
 // and handle events, making a webpage dynamic and interactive.
@@ -46,6 +47,32 @@ Accessing Elements
     getElementByclassName
     getElmetById
     innerHTML--use to add text within tag
-Evenet Handling 
-    even-any action performed by user or browser
-    -cliking the button,mouse movment pages
+
+Event Handling
+
+- Event – any action performed by user or browser
+  - clicking the button, mouse movement, page loading
+
+- JS supports
+  - mouse events – mouseover, mousemove, dblclick
+  - keyboard events – keypress, keyup, keydown
+  - form events – submit, change, focus, buttonclick
+  - window events – scroll, resize, load
+
+- Event handler
+  - inline HTML handlers
+  - DOM property handlers
+  - addEventListener
+
+Event Propagation
+
+Definition:
+Event propagation is the process by which an event travels through
+the DOM from the target element to its parent elements or vice versa.
+
+- Order in which events are handled
+- Event Bubbling - default, target → parent → ancestor
+- Event Capturing - opposite to bubbling, ancestor → parent → target
+- target
+
+
