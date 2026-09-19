@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event Handling</title>
+    </head>
+    <button onclick="alert('Inline Html handler')">click</button>
+    <p id="id1">onmouseover</p>
+    <script>
+    let para=document.getElementById("id1");
+    para.onmouseover=()=>{
+        para.style.color="red";
+        para.addEventListener("mouseout",()=>{
+            para.style.color="yellow";
+        });
+    }
+</script>
+</html>
