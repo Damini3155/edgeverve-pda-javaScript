@@ -1,0 +1,41 @@
+<html>
+<head>
+</head>
+
+<body>
+
+    <h2>Ajax Post Data</h2>
+
+    <input type="text" id="name" placeholder="Enter Your name">
+
+    <button onclick="sendData()">Submit</button>
+
+    <div id="result"></div>
+
+    <script>
+
+        function sendData() {
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "https://jsonplaceholder.typicode.com/posts");
+
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function() {
+
+                document.getElementById("result").innerHTML = xhr.responseText;
+
+            };
+
+            const data = {
+                name: document.getElementById("name").value
+            };
+
+            xhr.send(JSON.stringify(data));
+        }
+
+    </script>
+
+</body>
+</html>

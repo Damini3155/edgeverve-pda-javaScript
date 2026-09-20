@@ -1,0 +1,20 @@
+<!-- 
+ AJAX-  Asynchronous JavaScript and XML.
+ 
+ AJAX is used to send and receive data from a server asynchronously without reloading the entire web page.
+It helps make web applications faster and more interactive.
+-->
+<html>
+    <head></head>
+    <body>
+        <script>
+            const xhr=new XMLHttpRequest();
+            xhr.open("get","data.txt");
+            xhr.send();
+            xhr.onload=function(){
+                document.write("respose data is");
+                document.write(xhr.responseText);
+            }
+        </script>
+    </body>
+</html>
