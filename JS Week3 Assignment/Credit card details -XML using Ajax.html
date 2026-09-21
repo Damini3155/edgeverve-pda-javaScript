@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Revised Card Limit Check</title>
+
+    <style>
+        body {
+            background-color: #8ee8cf;
+        }
+
+        h2 {
+            text-align: center;
+            color: purple;
+            text-decoration: underline;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 3px;
+        }
+
+        th {
+            background-color: #78d5bd;
+        }
+
+        #success {
+            color: green;
+            font-weight: bold;
+        }
+
+        #report {
+            color: purple;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Revised Card Limit Check</h2>
+
+    <p>
+        To get data from API
+        <button onclick="getData()">Click Here</button>
+    </p>
+
+    <p id="success"></p>
+
+    <button onclick="generateReport()">Submit</button>
+
+    <div id="result"></div>
+
+    <p id="report"></p>
+
+
+    <script>
+
+        let cards = [];
+
+        function getData() {
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open(
+                "GET",
+                "https://webapps.tekstac.com/WebAPI/CreditCardsXMLServlet"
+            );
+
+            xhr.onload = function () {
+
+                if (xhr.readyState === 4 && xhr.status === 200) {
+
+                    const xml = xhr.responseXML;
+
+                    const cardList = xml.getElementsByTagName("creditcard");
+
+                    cards = [];
+
+                    for (let i = 0; i < cardList.length; i++) {
+
+                        const card = cardList[i];
+
+                        const obj = {
+                            name: card.getElementsByTagName("name")[0].textContent,
+                            type: card.getElementsByTagName("type")[0].textContent,
+                            limit: card.getElementsByTagName("limit")[0].textContent,
+                            expiry: card.getElementsByTagName("expiry")[0].textContent
+                        };
+
+                        cards.push(obj);
+                    }
+
+                    if (cards.length === 16) {
+                        document.getElementById("success").innerHTML =
+                            "Data retrieved successfully.";
+                    }
+
+                }
+            };
+
+            xhr.send();
+        }
+
+
+        function generateReport() {
+
+            let table = `
+                <table>
+                    <tr>
+                        <th>Card Holder Name</th>
+                        <th>Card Type</th>
+                        <th>CardLimit</th>
+                        <th>Expiry Date</th>
+                    </tr>
+            `;
+
+            for (let i = 0; i < cards.length; i++) {
+
+                table += `
+                    <tr>
+                        <td>${cards[i].name}</td>
+                        <td>${cards[i].type}</td>
+                        <td>${cards[i].limit}</td>
+                        <td>${cards[i].expiry}</td>
+                    </tr>
+                `;
+            }
+
+            table += "</table>";
+
+            document.getElementById("result").innerHTML = table;
+
+            document.getElementById("report").innerHTML =
+                "Report generated successfully!!!";
+        }
+
+    </script>
+
+</body>
+</html>
