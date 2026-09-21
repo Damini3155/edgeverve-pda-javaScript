@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 320px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #007BFF;
+        }
+
+        /* Error message style */
+        .error-message {
+            color: #d9534f;
+            font-size: 12px;
+            margin-top: 4px;
+            min-height: 16px; /* Keeps layout stable */
+        }
+
+        /* Success message style */
+        .success-message {
+            color: #28a745;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm" novalidate>
+            
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <span class="error-message" id="nameError"></span>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email">
+                <span class="error-message" id="emailError"></span>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <span class="error-message" id="passwordError"></span>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword">
+                <span class="error-message" id="confirmPasswordError"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+
+            <!-- Global Success Message Placeholder -->
+            <div id="successMessage" class="success-message"></div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        const confirmPasswordError = document.getElementById('confirmPasswordError');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function (event) {
+            // Prevent default form submission behavior
+            event.preventDefault();
+            
+            let isValid = true;
+            successMessage.textContent = ''; // Reset success text
+
+            // 1. Validate Name
+            if (nameInput.value.trim() === '') {
+                nameError.textContent = 'Name is required.';
+                isValid = false;
+            } else {
+                nameError.textContent = '';
+            }
+
+            // 2. Validate Email
+            const emailValue = emailInput.value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailValue === '') {
+                emailError.textContent = 'Email is required.';
+                isValid = false;
+            } else if (!emailPattern.test(emailValue)) {
+                emailError.textContent = 'Please enter a valid email format (e.g., abc@example.com).';
+                isValid = false;
+            } else {
+                emailError.textContent = '';
+            }
+
+            // 3. Validate Password
+            const passwordValue = passwordInput.value;
+            const hasUpperCase = /[A-Z]/.test(passwordValue);
+            const hasNumber = /[0-9]/.test(passwordValue);
+
+            if (passwordValue === '') {
+                passwordError.textContent = 'Password is required.';
+                isValid = false;
+            } else if (passwordValue.length < 8) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+                isValid = false;
+            } else if (!hasUpperCase) {
+                passwordError.textContent = 'Password must contain at least one uppercase letter.';
+                isValid = false;
+            } else if (!hasNumber) {
+                passwordError.textContent = 'Password must include at least one number.';
+                isValid = false;
+            } else {
+                passwordError.textContent = '';
+            }
+
+            // 4. Validate Confirm Password
+            const confirmPasswordValue = confirmPasswordInput.value;
+            if (confirmPasswordValue === '') {
+                confirmPasswordError.textContent = 'Please confirm your password.';
+                isValid = false;
+            } else if (confirmPasswordValue !== passwordValue) {
+                confirmPasswordError.textContent = 'Passwords do not match.';
+                isValid = false;
+            } else {
+                confirmPasswordError.textContent = '';
+            }
+
+            // If all checks pass
+            if (isValid) {
+                successMessage.textContent = 'Form submitted successfully!';
+                // form.submit(); // Uncomment this line if you want to submit the form to a server backend
+            }
+        });
+    </script>
+</body>
+</html>
