@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+</head>
+<body>
+    <!-- Text box and Save button required by the HTML page specification -->
+    <input type="text" id="username" placeholder="Enter username">
+    <button id="saveBtn">Save</button>
+
+    <script>
+        const usernameInput = document.getElementById("username");
+        const saveBtn = document.getElementById("saveBtn");
+
+        saveBtn.addEventListener("click", () => {
+            const username = usernameInput.value.trim();
+
+            if (username === "") {
+                alert("Username Required");
+                return;
+            }
+
+            localStorage.setItem("username", username);
+
+            if (Notification.permission === "granted") {
+                new Notification("User Saved Successfully");
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        new Notification("User Saved Successfully");
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
